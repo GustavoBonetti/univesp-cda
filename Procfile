@@ -1,0 +1,1 @@
+web: gunicorn cda.wsgi --log-file -
