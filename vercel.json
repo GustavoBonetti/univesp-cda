@@ -1,19 +1,23 @@
 {
-  "build": {
-    "env": {
-      "DJANGO_SETTINGS_MODULE": "cda.settings"
+  "version": 2,
+  "builds": [
+    {
+      "src": "cda/wsgi.py",
+      "use": "@vercel/python",
+      "config": {
+        "maxLambdaSize": "15mb",
+        "runtime": "Python3.9"
+      }
     }
-  },
+  ],
   "routes": [
     {
       "src": "/static/(.*)",
       "dest": "/staticfiles/$1"
-    }
-  ],
-  "handlers": [
+    },
     {
-      "handler": "wsgi",
-      "use": "@vercel/python"
+      "src": "/(.*)",
+      "dest": "cda/wsgi.py"
     }
   ]
 }
